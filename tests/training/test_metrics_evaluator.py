@@ -11,7 +11,17 @@ from marvin_automl_engine.training import MetricsEvaluator
 
 
 class TestMetricsEvaluator:
-    def test_execute(self, mocked_params):
+    def test_execute(self):
         ac = MetricsEvaluator()
-        ac.execute(params=mocked_params)
-        assert not ac._params
+        model = mock.MagicMock()
+        model.score.return_value = "test"
+        ac.marvin_model = {"model": model}
+        ac.marvin_dataset = {
+        	"X_train": 1,
+            "X_test": 2,
+            "y_train": 3,
+            "y_test": 4,
+        }
+        ac.execute(params=None)
+        model.score.assert_called_once_with(2, 4)
+        assert ac.marvin_metrics == "test"

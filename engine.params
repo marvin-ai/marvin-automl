@@ -1,1 +1,10 @@
-{}
+{
+	"url": "https://gist.githubusercontent.com/curran/a08a1080b88344b0c8a7/raw/d546eaee765268bf2f487608c537c05e22e4b221/iris.csv",
+	"separator": ",",
+	"encoding": "utf-8",
+	"generations": 3,
+	"population_size": 50,
+	"config": "TPOT sparse",
+	"target": "species",
+	"problem_type": "classification"
+}

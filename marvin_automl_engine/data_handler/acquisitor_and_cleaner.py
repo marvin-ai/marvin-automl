@@ -33,8 +33,4 @@ class AcquisitorAndCleaner(EngineBaseDataHandler):
             encoding=params.get("encoding"),
             engine="python"
         )
-
-        for x in df.select_dtypes(include=["object"]).columns:
-            df[x] = df[x].astype("category")
-
         self.marvin_initial_dataset = df

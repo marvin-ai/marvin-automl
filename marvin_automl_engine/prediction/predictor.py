@@ -11,6 +11,9 @@ from .._logging import get_logger
 
 from marvin_python_toolbox.engine_base import EngineBasePrediction
 
+import numpy as np
+
+
 __all__ = ['Predictor']
 
 
@@ -23,13 +26,7 @@ class Predictor(EngineBasePrediction):
         super(Predictor, self).__init__(**kwargs)
 
     def execute(self, input_message, params, **kwargs):
-        import pandas as pd
-        logger.warning("INPUT MSG: %s" % input_message)
-        logger.warning("PARAMS: %s" % params)
-        df = pd.DataFrame(data=input_message)
-        for x in df.select_dtypes(include=["object"]).columns:
-            df[x] = df[x].astype("category")
-        df = self.marvin_model["transformer"].transform(df)
-        final_prediction = self.marvin_model["model"].predict(df)[0]
-        logger.warning("PREDICTION: %s" % final_prediction)
-        return int(final_prediction)
+        input_message = np.array(input_message, dtype='float64')
+        final_prediction = self.marvin_model["model"].predict(input_message)[0]
+
+        return final_prediction
