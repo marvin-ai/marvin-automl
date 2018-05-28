@@ -29,7 +29,7 @@ class AcquisitorAndCleaner(EngineBaseDataHandler):
     def execute(self, params, **kwargs):
         df = pd.read_csv(
             MarvinData.download_file(params.get("url")),
-            sep=params.get("separator"),
+            sep=str(params.get("separator")),
             encoding=params.get("encoding"),
             engine="python"
         )
