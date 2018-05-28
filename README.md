@@ -7,137 +7,67 @@ AutoML Engine
 
 ## Requirements
 
-_REPLACE: Add here the list of requirements. For example:_
-
  - Python 2.7
- - Numpy 1.11.0 or higher
+ - scikit-learn 0.18.2
+ - scipy 0.19.1
+ - numpy 1.13.1
+ - pandas 0.20.3
+ - matplotlib 2.0.2
+ - marvin-python-toolbox 0
+ - Fabric 1.14.0
+ - tpot 0.9.3
 
 
 ## Installation
 
-Use the Marvin toolbox to provision, deploy and start the remote HTTP server.
+...
 
-First, edit the `marvin.ini` file, setting the options within the
-`ssh_deployment` section:
 
-1. `host`: the host IP address or name where the engine should be deployed. You
-can enable multi-host deployment using `,` to separate hosts
-2. `port`: the SSH connection port
-3. `user`: the SSH connection username. Currently, only a single user is
-supported. This user should be capable of *passwordless sudo*, although it can
-use password for the SSH connection
+## Running
 
-Next, ensure that the remotes servers are provisioned (all required software
-are installed):
-
-    marvin engine-deploy --provision
-
-Next, package your engine:
-
-    marvin engine-deploy --package
-
-This will create a compressed archive containing your engine code under the
-`.packages` directory.
-
-Next, deploy your engine to remotes servers:
-
-    marvin engine-deploy
-
-By default, a dependency clean will be executed at each deploy. You can skip it
-using:
-
-    marvin engine-deploy --skip-clean
-
-Next, you can start the HTTP server in the remotes servers:
-
-    marvin engine-httpserver-remote start
-
-You can check if the HTTP server is running:
-
-    marvin engine-httpserver-remote status
-
-And stop it:
-
-    marvin engine-httpserver-remote stop
-
-After starting, you can test it by making a HTTP request to any endpoint, like:
-
-    curl -v http://example.com/predictor/health
-
-Under the hood, this engine uses Fabric to define provisioning and deployment
-process. Check the `fabfile.py` for more information. You can add new tasks or
-edit existing ones to match your provisioning and deployment pipeline.
-
-## Development
-
-### Getting started
-
-First, create a new virtualenv
+To run the docker container:
 
 ```
-mkvirtualenv marvin_automl_engine_env
+sudo docker run --name=marvin-automl-0.0.2 --mount type=bind,source=$(HOME)/marvin/data,destination=/marvin-data/ -p 8000:8000 marvinaiplatform/marvin-automl/automl:0.0.2
 ```
 
-Now install the development dependencies
+Access `http://localhost:8000/docs/` to use the API HTTP interface.
 
+### Training a new model
+
+To train a new model, use the `/pipeline` on API HTTP interface with the following 2 parameters options:
+
+- For regression
 ```
-make marvin
+{'params': {'url': 'https://raw.githubusercontent.com/selva86/datasets/master/BostonHousing.csv',
+  'separator': ',',
+  'encoding': 'utf-8',
+  'generations': 3,
+  'population_size': 50,
+  'config': 'TPOT sparse',
+  'target': 'medv',
+  'problem_type': 'regression'},
+ 'message': [
+   [0.00632, 18, 2.31, '0', 0.538, 6.575, 65.2, 4.09, 1, 296, 15.3, 396.9, 4.98]
+ ]}
+ ```
+ 
+ - For classification
+ ```
+{'params': {'url': 'https://gist.githubusercontent.com/curran/a08a1080b88344b0c8a7/raw/d546eaee765268bf2f487608c537c05e22e4b221/iris.csv',
+  'separator': ',',
+  'encoding': 'utf-8',
+  'generations': 3,
+  'population_size': 50,
+  'config': 'TPOT sparse',
+  'target': 'species',
+  'problem_type': 'classification'},
+ 'message': [[5.1, 3.5, 1.4, 0.2]]}
 ```
+After running pipeline, restart the docker container to reload the model artifact. This behavior will be fixed shortly.
 
-You are now ready to code.
+### Predicting
 
+To predict a new value, use the `/predictor` endpoint on API HTTP interface with the same 2 params above.
 
-### Adding new dependencies
-
-It\`s very important. All development dependencies should be added to `setup.py`.
-
-### Running tests
-
-This project uses *[py.test](http://pytest.org/)* as test runner and *[Tox](https://tox.readthedocs.io)* to manage virtualenvs.
-
-To run all tests use the following command
-
-```
-marvin test
-```
-
-To run specific test
-
-```
-marvin test tests/test_file.py::TestClass::test_method
-```
-
-
-### Writting documentation
-
-The project documentation is written using *[Jupyter](http://jupyter.readthedocs.io/)* notebooks. 
-You can start the notebook server from the command line by running the following command
-
-```
-marvin notebook
-```
-
-Use notebooks to demonstrate how to use the lib features. It can also be useful to show some use cases.
-
-
-### Bumping version
-
-```
-marvin pkg-bumpversion [patch|minor|major]
-git add . && git commit -m "Bump version"
-```
-
-
-### Tagging version
-
-```
-marvin pkg-createtag
-git push origin master --follow-tags
-```
-
-
-### Logging
-
-The default log level is set to _WARNING_. You can change the log level at runtime setting another value to one of the following environment variable: `MARVIN_AUTOML_ENGINE_LOG_LEVEL` or `LOG_LEVEL`. The available values are _CRITICAL_, _ERROR_, _WARNING_, _INFO_ and _DEBUG_.
-
-Be careful using `LOG_LEVEL`, it may affect another lib.
+The `params` key is used to "configure" the automl code. The `message` key is used to input the values/features to predict.
