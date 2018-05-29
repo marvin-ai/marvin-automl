@@ -18,17 +18,16 @@ AutoML Engine
  - tpot 0.9.3
 
 
-## Installation
-
-...
-
-
 ## Running
 
 To run the docker container:
 
 ```
-sudo docker run --name=marvin-automl-0.0.2 --mount type=bind,source=$(HOME)/marvin/data,destination=/marvin-data/ -p 8000:8000 marvinaiplatform/marvin-automl/automl:0.0.2
+sudo docker pull marvinaiplatform/marvin-automl:0.0.1
+```
+
+```
+sudo docker run --name=marvin-automl-0.0.1 --mount type=bind,source=$HOME/marvin/data,destination=/marvin-data -p 8000:8000 marvinaiplatform/marvin-automl:0.0.1
 ```
 
 Access `http://localhost:8000/docs/` to use the API HTTP interface.
@@ -64,7 +63,8 @@ To train a new model, use the `/pipeline` on API HTTP interface with the followi
   'problem_type': 'classification'},
  'message': [[5.1, 3.5, 1.4, 0.2]]}
 ```
-After running pipeline, restart the docker container to reload the model artifact. This behavior will be fixed shortly.
+
+After running pipeline, **restart the docker container** to reload the model artifact. This behavior will be fixed shortly.
 
 ### Predicting
 
