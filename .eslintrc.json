@@ -1,0 +1,19 @@
+{
+    "extends": "airbnb-base",
+    "rules": {
+        "padded-blocks": [
+          "error",
+          "always"
+        ],
+        "no-trailing-spaces": [
+          "error",
+          {
+            "skipBlankLines": true
+          }
+        ],
+        "linebreak-style": "off"
+      },
+      "parserOptions": {
+        "ecmaVersion": 6
+      }
+}

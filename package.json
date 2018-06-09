@@ -4,7 +4,8 @@
   "description": "Marvin AutoML UI Project",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -19,10 +20,23 @@
     "User",
     "interface"
   ],
-  "author": "Willian Leite (@willianleite)",
+  "author": "Willian Leite @willianleite",
   "license": "Apache-2.0",
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.12.0",
+    "jest": "^23.1.0",
+    "jest-runner-eslint": "^0.6.0"
+  },  
+  "jest": {
+    "verbose": true,
+    "runner": "jest-runner-eslint",
+    "displayName": "lint",
+    "testMatch": ["api/**/*.js"]
   }
 }
