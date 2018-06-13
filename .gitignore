@@ -13,3 +13,6 @@ tests/__pycache__
 .DS_Store
 .packages
 .profiling
+build/
+notebooks/.ipynb_checkpoints/
+test_params.txt
