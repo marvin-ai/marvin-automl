@@ -5,6 +5,7 @@
 
 Use this module to add the project main code.
 """
+import multiprocessing
 
 from .._compatibility import six
 from .._logging import get_logger
@@ -29,11 +30,15 @@ class Trainer(EngineBaseTraining):
     def execute(self, params, **kwargs):
         problem_type = params.get("problem_type")
         TPOTClass = TPOTClassifier if problem_type == "classification" else TPOTRegressor
+        scoring = 'f1_weighted' if problem_type == "classification" else 'neg_mean_squared_error'
+
         model = TPOTClass(
             generations=params.get("generations"),
             population_size=params.get("population_size"),
             verbosity=2,
-            config_dict=params.get("config")
+            scoring=scoring,
+            config_dict=params.get("config"),
+            n_jobs=multiprocessing.cpu_count() - 1 or 1
         )
 
         X_train = self.marvin_dataset["X_train"]

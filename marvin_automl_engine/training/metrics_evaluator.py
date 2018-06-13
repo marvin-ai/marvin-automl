@@ -27,4 +27,7 @@ class MetricsEvaluator(EngineBaseTraining):
             self.marvin_dataset["X_test"],
             self.marvin_dataset["y_test"]
         )
+        print()
+        print("MODEL SCORE: ", score)
+        print()
         self.marvin_metrics = score

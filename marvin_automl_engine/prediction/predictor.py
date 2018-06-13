@@ -27,6 +27,6 @@ class Predictor(EngineBasePrediction):
 
     def execute(self, input_message, params, **kwargs):
         input_message = np.array(input_message, dtype='float64')
-        final_prediction = self.marvin_model["model"].predict(input_message)[0]
-
+        pred = self.marvin_model["model"].predict(input_message)[0]
+        final_prediction = pred.item() if hasattr(pred, 'item') else pred
         return final_prediction

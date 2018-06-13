@@ -11,6 +11,7 @@ from .._logging import get_logger
 
 from marvin_python_toolbox.engine_base import EngineBaseDataHandler
 
+from datacleaner import autoclean
 from sklearn.model_selection import train_test_split
 
 
@@ -27,7 +28,7 @@ class TrainingPreparator(EngineBaseDataHandler):
 
     def execute(self, params, **kwargs):
         target = params.get("target")
-        X = self.marvin_initial_dataset.drop(target, axis=1)
+        X = autoclean(self.marvin_initial_dataset.drop(target, axis=1))
         y = self.marvin_initial_dataset[target]
 
         X_train, X_test, y_train, y_test = train_test_split(
