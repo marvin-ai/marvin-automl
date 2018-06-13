@@ -16,21 +16,26 @@ AutoML Engine
  - marvin-python-toolbox 0
  - Fabric 1.14.0
  - tpot 0.9.3
+- datacleaner 0.1.5
 
+## Run or Install
 
-## Running
-
-To run the docker container:
+There are a Docker Image prepared with this engine. To run the docker container:
 
 ```
 sudo docker pull marvinaiplatform/marvin-automl:0.0.1
 ```
-
 ```
 sudo docker run --name=marvin-automl-0.0.1 --mount type=bind,source=$HOME/marvin/data,destination=/marvin-data -p 8000:8000 marvinaiplatform/marvin-automl:0.0.1
 ```
-
 Access `http://localhost:8000/docs/` to use the API HTTP interface.
+
+To install the engine locally (without docker) follow these steps:
+
+1. Install Python Toolbox, [described here](https://www.marvin-ai.org/book/installing-marvin/ubuntu-user-installation)
+2. Clone the engine from github
+3. Install the engine, [described here](https://www.marvin-ai.org/book/get-started/working-in-an-existent-engine)
+
 
 ### Training a new model
 
