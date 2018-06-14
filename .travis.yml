@@ -22,10 +22,11 @@ before_install:
   - sudo pip install --upgrade pip
   - sudo pip install virtualenvwrapper --ignore-installed six
   - source virtualenvwrapper.sh
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then mkvirtualenv automl-engine-env         ; fi
   
 install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then mkvirtualenv automl-engine-env         ; fi
+  - pip install codecov
+  - make marvin
 
 script:
-  - make marvin
   - marvin test
