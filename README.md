@@ -1,4 +1,8 @@
-# automl v0.0.1
+[![Build Status](https://travis-ci.org/marvin-ai/marvin-automl-engine.svg)](https://travis-ci.org/marvin-ai/marvin-automl-engine) [![codecov](https://codecov.io/gh/marvin-ai/marvin-automl-engine/branch/master/graph/badge.svg)](https://codecov.io/gh/marvin-ai/marvin-automl-engine)
+
+[![Join the chat at https://gitter.im/gitterHQ/gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/marvin-ai)
+
+# Marvin AutoML Engine v0.0.1
 
 ## Overview
 
