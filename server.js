@@ -1,21 +1,39 @@
-const express  = require('express');
-const app = express();
+'use strict';
 
-const bodyParser = require('body-parser');    
+const Path = require('path');
+const Hapi = require('hapi');
+const Inert = require('inert');
 
-app.use(express.static(__dirname + '/public')); 
-
-// application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
-// application/json
-app.use(bodyParser.json());
-
-// routes
-// application 
-app.get('*', function(req, res) {
-    res.sendFile(__dirname + '/public/index.html'); 
+// create new server instance
+const server = new Hapi.Server({
+    port: 3000,
+    host: 'localhost',
+    routes: {
+        files: {
+            relativeTo: Path.join(__dirname, 'dist/marvin-ui')
+        }
+    }
 });
 
-app.listen(8080, () => {
-    console.log("Marvin AutoML listening on port 8080");
-});
+const provision = async () => {
+
+    await server.register(Inert);
+
+    server.route({
+        method: 'GET',
+        path: '/{param*}',
+        handler: {
+            directory: {
+                path: '.',
+                redirectToSlash: true,
+                index: true,
+            }
+        }
+    });
+
+    await server.start();
+
+    console.log('Marvin AutoML Server running at:', server.info.uri);
+};
+
+provision();
