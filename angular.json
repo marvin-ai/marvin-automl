@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "marvi-angular": {
+    "marvin-automl-ui": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/marvin-ui",
+            "outputPath": "dist/marvin-automl-ui",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -50,18 +50,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "marvin-ui:build"
+            "browserTarget": "marvin-automl-ui:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "marvin-ui:build:production"
+              "browserTarget": "marvin-automl-ui:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "marvin-ui:build"
+            "browserTarget": "marvin-automl-ui:build"
           }
         },
         "test": {
@@ -103,11 +103,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "marvin-ui:serve"
+            "devServerTarget": "marvin-automl-ui:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "marvin-ui:serve:production"
+              "devServerTarget": "marvin-automl-ui:serve:production"
             }
           }
         },
@@ -123,5 +123,5 @@
       }
     }
   },
-  "defaultProject": "marvin-ui"
+  "defaultProject": "marvin-automl-ui"
 }

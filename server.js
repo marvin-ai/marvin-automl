@@ -10,7 +10,7 @@ const server = new Hapi.Server({
     host: 'localhost',
     routes: {
         files: {
-            relativeTo: Path.join(__dirname, 'dist/marvin-ui')
+            relativeTo: Path.join(__dirname, 'dist/marvin-automl-ui')
         }
     }
 });

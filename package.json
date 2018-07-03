@@ -1,5 +1,5 @@
 {
-  "name": "marvin-automl-ui-revisited",
+  "name": "marvin-automl-ui",
   "version": "0.0.1",
   "description": "Marvin AutoML UI Project",
   "main": "server.js",
