@@ -14,9 +14,9 @@ module.exports = [
   },
   { // GET Api Healthcheck
     method: 'GET',
-    path: '/api',
+    path: '/healthcheck',
     handler: (request, h) => {
-      return 'API HealthCheck';;
+      return h.response({ message : 'API HealthCheck'}).type('application/json').code(200);
     }
   },
   { // Angular static Path
