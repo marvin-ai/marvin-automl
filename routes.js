@@ -3,7 +3,7 @@ const UserController = require('./controllers/userController');
 
 module.exports = [
   { // GET Login
-    method: 'GET',
+    method: 'POST',
     path: '/api/login',
     handler: UserController.login
   },

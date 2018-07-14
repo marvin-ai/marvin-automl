@@ -1,5 +1,6 @@
 
 const User = require('../models/user');
+const uuidv1 = require('uuid/v1');
 
 // getUsers
 const getUsers = (request, h) => {
@@ -8,8 +9,9 @@ const getUsers = (request, h) => {
 
     users = users.map((value) => {
       return {
-        _id : value._id, 
-        username : value.username}
+        _id: value._id,
+        username: value.username
+      }
     })
 
     const response = h.response(users);
@@ -28,18 +30,15 @@ const getUsers = (request, h) => {
 // login
 const login = (request, h) => {
 
-  return User.find("{ username :  }").then(users => {
+  const { name, pass } = request.payload;
 
-    users = users.map((value) => {
-      return {
-        _id : value._id, 
-        username : value.username}
-    })
+  return User.find({ username: name, pass: pass }).then(users => {
 
-    const response = h.response(users);
-    response.type('application/json');
-
-    return response.code(200);
+    if (!users.length) {
+      return h.response({ message: 'User or password is invalid' }).type('application/json').code(404);
+    }
+    
+    return h.response({ token: uuidv1() }).type('application/json').code(200);
 
   }).catch(error => {
     const response = h.response(error);
