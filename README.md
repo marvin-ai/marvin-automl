@@ -12,15 +12,18 @@
 This project is focus to help **users** to test your data over the Marvin to achieve the best ML solutions base on **Marvin Auto ML** solution with an easy user interface.
 
 ## Solution Stack
-- Angular4 (https://angular.io/)
-- Nodejs (https://nodejs.org/en/)
-- - Hapi (https://hapijs.com/)
+- Angular 6 (https://angular.io/)
+- Nodejs 8 (https://nodejs.org/en/)
+- - Hapi v17 (https://hapijs.com/)
+- MongoDb 4.0 (https://www.mongodb.com/)
 
 #Running Application
 
 ## Start 
 
 Run `npm start`
+
+Build the Angular project and run the node server.
 
 ## Running unit tests
 
@@ -30,4 +33,8 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
+## Debug Angular Application 
 
+Run `ng serve`
+
+Run the Angular development server.
