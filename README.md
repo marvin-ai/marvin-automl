@@ -17,6 +17,9 @@ This project is focus to help **users** to test your data over the Marvin to ach
 - - Hapi v17 (https://hapijs.com/)
 - MongoDb 4.0 (https://www.mongodb.com/)
 
+## Configuring Mongodb
+To start the project you need an valid MongoDb connection. To start read your guide [here](mongocommands.md).
+
 #Running Application
 
 ## Start 
