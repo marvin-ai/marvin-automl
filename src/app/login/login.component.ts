@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['home']);
     },
       (err: HttpErrorResponse) => {
+        alert(err.error.message);
         console.log(err.error);
         console.log(err.name);
         console.log(err.message);
