@@ -1,14 +1,16 @@
-.PHONY: help marvin update clean-pyc clean-build clean-reports clean-deps clean docker-build docker-push docker-run
+.PHONY: help marvin marvin-prod update clean-pyc clean-build clean-reports clean-deps clean docker-build docker-push docker-run
 
 DOCKER_VERSION?=0.00.01
 DOCKER_REGISTRY_ADRESS?=docker.registry.io
 MARVIN_DATA_PATH?=$(HOME)/marvin/data
 MARVIN_ENGINE_NAME?=automl
-MARVIN_TOOLBOX_VERSION?=0.0.3
+MARVIN_TOOLBOX_VERSION?=0.0.4
 
 help:
 	@echo "    marvin"
 	@echo "        Prepare project to be used as a marvin package."
+	@echo "    marvin-prod"
+	@echo "        Prepare project to be used in production environment."
 	@echo "    update"
 	@echo "        Reinstall requirements and setup.py dependencies."
 	@echo "    clean"
@@ -29,7 +31,11 @@ help:
 	@echo "        Runs the docker run command with marvin env default parameters."
 
 marvin:
-	pip install -e . --process-dependency-links
+	pip install -e ".[testing]" --process-dependency-links
+	marvin --help
+
+marvin-prod:
+	pip install . --process-dependency-links
 	marvin --help
 
 update:
