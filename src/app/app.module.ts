@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AuthguardGuard } from './authguard.guard';
 import { UserService } from './user.service';
+import { TrainerComponent } from './trainer/trainer.component';
 
 const appRoutes:Routes = [
   {
@@ -19,6 +20,11 @@ const appRoutes:Routes = [
     path: 'home',
     canActivate: [AuthguardGuard],
     component: HomeComponent
+  },
+  {
+    path: 'trainer',
+    canActivate: [AuthguardGuard],
+    component: TrainerComponent
   }
 ]
 
@@ -26,7 +32,8 @@ const appRoutes:Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    TrainerComponent
   ],
   imports: [
     BrowserModule,
