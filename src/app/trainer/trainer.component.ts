@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { UserService } from '../user.service';
+import { HttpClient } from '@angular/common/http';
+import { StatusService } from '../status.service';
+import { Status } from '../action.status';
 
 @Component({
   selector: 'app-trainer',
@@ -8,9 +11,18 @@ import { UserService } from '../user.service';
 })
 export class TrainerComponent implements OnInit {
 
-  constructor(private user:UserService) { }
+  status: Status;
+
+  constructor(private statusService: StatusService) { }
 
   ngOnInit() {
+  	this
+  		.statusService
+  		.getResult()
+  		.subscribe((data: Status) => {
+  			console.log(data);
+  			this.status = data;
+  		});
   }
 
 }

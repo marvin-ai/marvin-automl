@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { AuthguardGuard } from './authguard.guard';
 import { UserService } from './user.service';
 import { TrainerComponent } from './trainer/trainer.component';
+import { StatusService } from './status.service';
 
 const appRoutes:Routes = [
   {
@@ -18,12 +19,12 @@ const appRoutes:Routes = [
   },
   {
     path: 'home',
-    canActivate: [AuthguardGuard],
+    //canActivate: [AuthguardGuard],
     component: HomeComponent
   },
   {
     path: 'trainer',
-    canActivate: [AuthguardGuard],
+    //canActivate: [AuthguardGuard],
     component: TrainerComponent
   }
 ]
@@ -42,7 +43,7 @@ const appRoutes:Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [UserService, AuthguardGuard],
+  providers: [UserService, AuthguardGuard, StatusService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
