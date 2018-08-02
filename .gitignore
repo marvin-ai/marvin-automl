@@ -16,3 +16,4 @@ tests/__pycache__
 build/
 notebooks/.ipynb_checkpoints/
 test_params.txt
+.pytest_cache
