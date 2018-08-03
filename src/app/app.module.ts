@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AuthguardGuard } from './authguard.guard';
 import { UserService } from './user.service';
+import { PredictorComponent } from './predictor/predictor.component';
 
 const appRoutes:Routes = [
   {
@@ -17,8 +18,14 @@ const appRoutes:Routes = [
   },
   {
     path: 'home',
-    canActivate: [AuthguardGuard],
+    //canActivate: [AuthguardGuard],
     component: HomeComponent
+  }
+  ,
+  {
+    path: 'predictor',
+    //canActivate: [AuthguardGuard],
+    component: PredictorComponent
   }
 ]
 
@@ -26,7 +33,8 @@ const appRoutes:Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    PredictorComponent
   ],
   imports: [
     BrowserModule,
