@@ -1,0 +1,50 @@
+<h3>Acquisitor</h3>
+<div class="divTable">
+  <div class="divTableBody">
+    <div class="divTableRow">
+      <div class="divTableCell">
+        <div class="row">
+          <div class="col-xs-offset-1 col-xs-8">
+            <form (submit)="submitAcquisitor($event)">
+              <div class="form-group">
+                <label for="url">Your dataset URL</label>
+                <input type="text" id="url" class="form-control" placeholder="Dataset URL" aria-describedby="basic-addon1">
+              </div>
+              <p>Dataset details</p>
+              <div class="form-group">
+                <input type="text" id="target" class="form-control" placeholder="Your Target Col" aria-describedby="basic-addon1">
+              </div>
+              <div class="form-group">
+                <select class="form-control">
+                  <option disabled="disabled">Separator</option>
+                  <option value=",">comma (,)</option>
+                  <option value=";">semicolon (;)</option>
+                  <option value="\t">tabs (\t)</option>
+                  <option value="|">pipes (|)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <select class="form-control">
+                  <option disabled="disabled">Encoding</option>
+                  <option value="utf-8">utf-8</option>
+                  <option value="iso-8859-1">iso-8859-1</option>
+                  <option value="latin-1">latin-1</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <select class="form-control">
+                  <option disabled="disabled">Trainig time</option>
+                  <option value="1">fast</option>
+                  <option value="3">medium</option>
+                  <option value="10">long</option>
+                  <option value="15">very long</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

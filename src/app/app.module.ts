@@ -10,6 +10,8 @@ import { HomeComponent } from './home/home.component';
 import { AuthguardGuard } from './authguard.guard';
 import { UserService } from './user.service';
 import { PredictorComponent } from './predictor/predictor.component';
+import { AcquisitorComponent } from './acquisitor/acquisitor.component';
+
 
 const appRoutes:Routes = [
   {
@@ -18,8 +20,13 @@ const appRoutes:Routes = [
   },
   {
     path: 'home',
-    //canActivate: [AuthguardGuard],
+    // canActivate: [AuthguardGuard],
     component: HomeComponent
+  },
+
+  {
+    path: 'acquisitor',
+    component: AcquisitorComponent
   }
   ,
   {
@@ -34,7 +41,8 @@ const appRoutes:Routes = [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    PredictorComponent
+    PredictorComponent,
+    AcquisitorComponent
   ],
   imports: [
     BrowserModule,
