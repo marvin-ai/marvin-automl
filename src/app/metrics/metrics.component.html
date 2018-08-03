@@ -1,0 +1,36 @@
+
+<h3>Welcome !</h3>
+<canvas id="metrics-gauge"></canvas>
+<ul>
+  
+ <li *ng-for="var item of metric.result.entries(); var i = index; var mykey=item[0]; var myvalue=item[1]">
+  {{ mykey | json }}: {{ myvalue | json }}
+</li>
+</ul>
+
+<script type="text/javascript">
+    var opts = {
+      angle: -0.2,
+      lineWidth: 0.2,
+      radiusScale: 1,
+      pointer: {
+        length: 0.62,
+        strokeWidth: 0.068,
+        color: '#000000'
+      },
+      limitMax: false,
+      limitMin: false,
+      colorStart: '#6FADCF',
+      colorStop: '#8FC0DA',
+      strokeColor: '#E0E0E0',
+      generateGradient: true,
+      highDpiSupport: true,
+    };
+    var target = document.getElementById('metrics-gauge');
+    var gauge = new Gauge(target).setOptions(opts);
+    gauge.maxValue = 3000;
+    gauge.setMinValue(0);
+    gauge.animationSpeed = 27;
+    gauge.set(1100);
+    gauge.render();
+</script>
