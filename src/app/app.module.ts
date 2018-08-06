@@ -11,6 +11,8 @@ import { AuthguardGuard } from './authguard.guard';
 import { UserService } from './user.service';
 
 import { MetricsComponent } from './metrics/metrics.component';
+import { AcquisitorComponent } from './acquisitor/acquisitor.component';
+
 
 const appRoutes:Routes = [
   {
@@ -25,6 +27,9 @@ const appRoutes:Routes = [
   {
     path: 'metrics',
     component: MetricsComponent
+  {
+    path: 'acquisitor',
+    component: AcquisitorComponent
   }
 ]
 
@@ -34,6 +39,7 @@ const appRoutes:Routes = [
     LoginComponent,
     HomeComponent,
     MetricsComponent
+    AcquisitorComponent
   ],
   imports: [
     BrowserModule,
