@@ -27,10 +27,11 @@ const appRoutes:Routes = [
   {
     path: 'metrics',
     component: MetricsComponent
+  },
   {
     path: 'acquisitor',
     component: AcquisitorComponent
-  }
+  },
 ]
 
 @NgModule({
