@@ -9,8 +9,8 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AuthguardGuard } from './authguard.guard';
 import { UserService } from './user.service';
-
 import { MetricsComponent } from './metrics/metrics.component';
+import { PredictorComponent } from './predictor/predictor.component';
 import { AcquisitorComponent } from './acquisitor/acquisitor.component';
 
 
@@ -32,6 +32,11 @@ const appRoutes:Routes = [
     path: 'acquisitor',
     component: AcquisitorComponent
   },
+  {
+    path: 'predictor',
+    //canActivate: [AuthguardGuard],
+    component: PredictorComponent
+  }
 ]
 
 @NgModule({
@@ -40,6 +45,7 @@ const appRoutes:Routes = [
     LoginComponent,
     HomeComponent,
     MetricsComponent,
+    PredictorComponent,
     AcquisitorComponent
   ],
   imports: [
