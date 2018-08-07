@@ -12,6 +12,9 @@ import { UserService } from './user.service';
 import { TrainerComponent } from './trainer/trainer.component';
 import { StatusService } from './status.service';
 
+import { AcquisitorComponent } from './acquisitor/acquisitor.component';
+
+
 const appRoutes:Routes = [
   {
     path: '',
@@ -26,6 +29,13 @@ const appRoutes:Routes = [
     path: 'trainer',
     //canActivate: [AuthguardGuard],
     component: TrainerComponent
+    // canActivate: [AuthguardGuard],
+    component: HomeComponent
+  },
+
+  {
+    path: 'acquisitor',
+    component: AcquisitorComponent
   }
 ]
 
@@ -35,6 +45,7 @@ const appRoutes:Routes = [
     LoginComponent,
     HomeComponent,
     TrainerComponent
+    AcquisitorComponent
   ],
   imports: [
     BrowserModule,
