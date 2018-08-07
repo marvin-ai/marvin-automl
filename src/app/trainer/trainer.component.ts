@@ -20,8 +20,7 @@ export class TrainerComponent implements OnInit {
   		.statusService
   		.getResult()
   		.subscribe((data: Status) => {
-  			console.log(data);
-  			this.status = data;
+  			this.status = JSON.parse(data.result));
   		});
   }
 

@@ -11,7 +11,7 @@ export class StatusService {
   getResult() {
   	return this
   			.http
-  			.get('http://localhost:8000/trainer/status?protocol=trainer_33335ed4-67e3-4aeb-8127-5dadca551c66');
+  			.get('http://10.167.68.119:8000/trainer/status?protocol=trainer_242f0342-7f1d-44fb-b5e3-c571046294c4');
   }
 
 }
