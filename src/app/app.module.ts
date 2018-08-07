@@ -39,7 +39,7 @@ const appRoutes:Routes = [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    MetricsComponent
+    MetricsComponent,
     AcquisitorComponent
   ],
   imports: [
