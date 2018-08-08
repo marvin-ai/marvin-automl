@@ -40,7 +40,7 @@ const appRoutes:Routes = [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    TrainerComponent
+    TrainerComponent,
     AcquisitorComponent
   ],
   imports: [
