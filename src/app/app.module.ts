@@ -10,6 +10,8 @@ import { AuthguardGuard } from './authguard.guard';
 import { UserService } from './user.service';
 import { TrainerComponent } from './trainer/trainer.component';
 import { StatusService } from './status.service';
+import { MetricsComponent } from './metrics/metrics.component';
+import { PredictorComponent } from './predictor/predictor.component';
 import { AcquisitorComponent } from './acquisitor/acquisitor.component';
 
 
@@ -20,18 +22,26 @@ const appRoutes:Routes = [
   },
   {
     path: 'home',
-    //canActivate: [AuthguardGuard],
+    // canActivate: [AuthguardGuard],
     component: HomeComponent
+  },
+  {
+    path: 'acquisitor',
+    component: AcquisitorComponent
   },
   {
     path: 'trainer',
     //canActivate: [AuthguardGuard],
     component: TrainerComponent
   },
-
   {
-    path: 'acquisitor',
-    component: AcquisitorComponent
+    path: 'metrics',
+    component: MetricsComponent
+  },
+  {
+    path: 'predictor',
+    //canActivate: [AuthguardGuard],
+    component: PredictorComponent
   }
 ]
 
@@ -41,6 +51,8 @@ const appRoutes:Routes = [
     LoginComponent,
     HomeComponent,
     TrainerComponent,
+    MetricsComponent,
+    PredictorComponent,
     AcquisitorComponent
   ],
   imports: [
