@@ -3,12 +3,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { RouterModule, Routes} from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AuthguardGuard } from './authguard.guard';
 import { UserService } from './user.service';
+import { TrainerComponent } from './trainer/trainer.component';
+import { StatusService } from './status.service';
 import { MetricsComponent } from './metrics/metrics.component';
 import { PredictorComponent } from './predictor/predictor.component';
 import { AcquisitorComponent } from './acquisitor/acquisitor.component';
@@ -25,12 +26,17 @@ const appRoutes:Routes = [
     component: HomeComponent
   },
   {
-    path: 'metrics',
-    component: MetricsComponent
-  },
-  {
     path: 'acquisitor',
     component: AcquisitorComponent
+  },
+  {
+    path: 'trainer',
+    //canActivate: [AuthguardGuard],
+    component: TrainerComponent
+  },
+  {
+    path: 'metrics',
+    component: MetricsComponent
   },
   {
     path: 'predictor',
@@ -44,6 +50,7 @@ const appRoutes:Routes = [
     AppComponent,
     LoginComponent,
     HomeComponent,
+    TrainerComponent,
     MetricsComponent,
     PredictorComponent,
     AcquisitorComponent
@@ -55,7 +62,7 @@ const appRoutes:Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [UserService, AuthguardGuard],
+  providers: [UserService, AuthguardGuard, StatusService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
