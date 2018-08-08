@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { RouterModule, Routes} from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
@@ -11,7 +10,6 @@ import { AuthguardGuard } from './authguard.guard';
 import { UserService } from './user.service';
 import { TrainerComponent } from './trainer/trainer.component';
 import { StatusService } from './status.service';
-
 import { AcquisitorComponent } from './acquisitor/acquisitor.component';
 
 
@@ -29,8 +27,6 @@ const appRoutes:Routes = [
     path: 'trainer',
     //canActivate: [AuthguardGuard],
     component: TrainerComponent
-    // canActivate: [AuthguardGuard],
-    component: HomeComponent
   },
 
   {
