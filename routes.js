@@ -1,6 +1,7 @@
 // routes.js
 const UserController = require('./controllers/userController');
-var http = require('request');
+const AcquisitorController = require('./controllers/acquisitorController');
+
 
 module.exports = [
   { // GET Login
@@ -16,25 +17,7 @@ module.exports = [
   {
     method: 'POST',
     path: '/api/acquisitor',
-    handler: function (request, h){
-      var resp = h.response();
-      resp.type('application/json');
-      
-      http.post({
-          'url': 'http://localhost:8000/acquisitor',
-          'json': true,
-          'body': JSON.parse(request.payload)
-        },
-        function (error, response, body) {
-          if (!error && response.statusCode == 200){
-            resp.code(200);
-          } else {
-            resp.code(500);
-          }
-        }
-      );
-      return resp;
-    }
+    handler: AcquisitorController.pipeline
   },
   { // GET Api Healthcheck
     method: 'GET',
