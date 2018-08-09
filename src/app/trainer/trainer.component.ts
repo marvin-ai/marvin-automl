@@ -18,7 +18,7 @@ export class TrainerComponent implements OnInit {
   ngOnInit() {
   	this
   		.statusService
-  		.getResult()
+  		.getResult("")
   		.subscribe((data: Status) => {
   			this.status = JSON.parse(data.result);
   		});

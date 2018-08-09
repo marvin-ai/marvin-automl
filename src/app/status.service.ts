@@ -8,10 +8,11 @@ export class StatusService {
 
   constructor(private http: HttpClient) { }
 
-  getResult() {
-  	return this
-  			.http
-  			.get('http://localhost:8000/trainer/status?protocol=trainer_3d9e9507-7ee7-46c8-8064-8a4172c64fae');
+  getResult(url) {
+  	return this.http.get(url);
   }
 
+  public postData(url: string, data: any): any {
+  	return this.http.post(url, data);
+  }
 }
