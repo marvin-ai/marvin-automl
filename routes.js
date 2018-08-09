@@ -1,6 +1,7 @@
 // routes.js
 const UserController = require('./controllers/userController');
 const AcquisitorController = require('./controllers/acquisitorController');
+const PredictorController = require('./controllers/predictorController');
 
 
 module.exports = [
@@ -18,6 +19,11 @@ module.exports = [
     method: 'POST',
     path: '/api/acquisitor',
     handler: AcquisitorController.pipeline
+  },
+  {
+    method: 'POST',
+    path: '/api/predictor',
+    handler: PredictorController.prediction
   },
   { // GET Api Healthcheck
     method: 'GET',
