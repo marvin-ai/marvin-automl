@@ -3,7 +3,7 @@ var rp = require('request-promise');
 const action = (request, h) => {
     return rp.post(
         {
-            'url': 'http://localhost:8000/acquisitor',
+            'url': 'http://localhost:8000/tpreparator',
             'json': true,
             'body': JSON.parse(JSON.parse(request.payload))
         },
@@ -13,7 +13,7 @@ const action = (request, h) => {
 const status = (request, h) => {
     return rp.get(
         {
-            'url': 'http://localhost:8000/acquisitor/status',
+            'url': 'http://localhost:8000/tpreparator/status',
             'json': true,
         },
     );

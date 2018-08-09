@@ -20,13 +20,12 @@ export class PredictorComponent implements OnInit {
 
     this.http
     	.post('http://localhost:3000/api/predictor', JSON.stringify(message))
-    	.subscribe((data: string) => {
-    	this.predicted = JSON.parse(data);
-    	console.log("bbbbbbbb");
-    	console.log(data);
-    });
-    console.log("aaaaaaaaaaaaaaa");
-    console.log(this.predicted);
+    	.subscribe(
+    		resp => console.log(resp),
+    		error => console.log(error)
+    	);
+    // console.log("aaaaaaaaaaaaaaa");
+    // console.log(this.predicted);
   }
 
 }
