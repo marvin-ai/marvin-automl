@@ -5,15 +5,16 @@ const action = (request, h) => {
         {
             'url': 'http://localhost:8000/acquisitor',
             'json': true,
-            'body': JSON.parse(JSON.parse(request.payload))
+            'body': JSON.parse(request.payload)
         },
     );
 }
 
 const status = (request, h) => {
+    var protocol = JSON.parse(request.payload)['protocol'];
     return rp.get(
         {
-            'url': 'http://localhost:8000/acquisitor/status',
+            'url': 'http://localhost:8000/acquisitor/status?protocol='+protocol,
             'json': true,
         },
     );

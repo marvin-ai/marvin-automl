@@ -4,6 +4,7 @@
 /dist
 /tmp
 /out-tsc
+/data
 
 # dependencies
 /node_modules
@@ -16,8 +17,11 @@
 *.launch
 .settings/
 *.sublime-workspace
+.editorconfig
+.eslintrc.json
 
 # IDE - VSCode
+.vscode
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -37,3 +41,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# front things
+
+package-lock.json

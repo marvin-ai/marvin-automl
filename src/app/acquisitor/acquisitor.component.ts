@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { StatusService } from '../status.service';
-import { Status } from '../action.status';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,9 +11,7 @@ import { Status } from '../action.status';
 
 export class AcquisitorComponent implements OnInit {
 
-  status: Status;
-
-  constructor(private user:UserService, private statusService: StatusService, private http: HttpClient) { }
+  constructor(private router: Router) { }
   
   ngOnInit() {}
 
@@ -28,7 +23,7 @@ export class AcquisitorComponent implements OnInit {
     var problem_type = post.target.elements[2].value;
     var sep = post.target.elements[3].value;
     var encoding = post.target.elements[4].value;
-    var generations = post.target.elements[5].value;
+    var generations = parseInt(post.target.elements[5].value);
 
     var data = {
       "params": {
@@ -39,9 +34,11 @@ export class AcquisitorComponent implements OnInit {
         "target": target,
         "problem_type": problem_type,
         "population_size": 50,
-        "config": "TPOT",
+        "config": "TPOT sparse",
       }
     }
-    this.http.post('http://localhost:3000/api/acquisitor', JSON.stringify(data)).subscribe(data => {console.log(data)})
+    window.localStorage.setItem('acquisitor', JSON.stringify(data));
+    this.router.navigate(['trainer']);
+    // this.http.post('http://localhost:3000/api/acquisitor', JSON.stringify(data)).subscribe(data => {console.log(data)})
   }
 }

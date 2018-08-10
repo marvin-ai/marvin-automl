@@ -11,12 +11,17 @@ module.exports = [
   { // GET Login
     method: 'POST',
     path: '/api/login',
-    handler: UserController.login
+    handler: UserController.login,
   },
   { // GET Users
     method: 'GET',
     path: '/api/users',
-    handler: UserController.getUsers
+    handler: UserController.getUsers,
+  },
+  {
+    method: 'POST',
+    path: '/api/acquisitor/status',
+    handler: AcquisitorController.status
   },
   {
     method: 'POST',
@@ -27,6 +32,11 @@ module.exports = [
     method: 'POST',
     path: '/api/tpreparator',
     handler: TpreparatorController.action
+  },
+  {
+    method: 'POST',
+    path: '/api/trainer/status',
+    handler: TrainerController.status
   },
   {
     method: 'POST',
@@ -46,9 +56,7 @@ module.exports = [
   { // GET Api Healthcheck
     method: 'GET',
     path: '/healthcheck',
-    handler: (request, h) => {
-      return h.response({ message : 'API HealthCheck'}).type('application/json').code(200);
-    }
+    handler: (request, h) => h.response({ message: 'API HealthCheck' }).type('application/json').code(200),
   },
   { // Angular static Path
     method: 'GET',
@@ -58,7 +66,7 @@ module.exports = [
         path: '.',
         redirectToSlash: true,
         index: true,
-      }
-    }
-  }
+      },
+    },
+  },
 ];
