@@ -5,7 +5,7 @@ const action = (request, h) => {
         {
             'url': 'http://localhost:8000/tpreparator',
             'json': true,
-            'body': JSON.parse(JSON.parse(request.payload))
+            'body': JSON.parse(request.payload)
         },
     );
 }

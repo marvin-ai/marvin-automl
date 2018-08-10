@@ -20,6 +20,11 @@ module.exports = [
   },
   {
     method: 'POST',
+    path: '/api/acquisitor/status',
+    handler: AcquisitorController.status
+  },
+  {
+    method: 'POST',
     path: '/api/acquisitor',
     handler: AcquisitorController.action
   },
