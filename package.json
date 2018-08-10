@@ -41,8 +41,8 @@
     "hapi": "^17.5.3",
     "inert": "^5.1.0",
     "mongodb": "^3.1.1",
-    "request-promise": "^4.2.2",
     "mongoose": "^5.2.7",
+    "request-promise": "^4.2.2",
     "rxjs": "^6.2.2",
     "uuid": "^3.3.2",
     "zone.js": "^0.8.26"
