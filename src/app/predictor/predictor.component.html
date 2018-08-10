@@ -7,19 +7,21 @@
           <div class="col-xs-offset-1 col-xs-8">
             <form (submit)="submitPredictor($event)">
               <div class="form-group">
-               <label>Your message for prediction</label>
+               <label>Message for prediction:</label>
                <input type="text" class="form-control" placeholder="Prediction Message" aria-describedby="basic-addon1">
              </div>
-             <button type="submit" class="btn btn-primary">Submit</button> 
+             <button type="submit" class="btn btn-primary">Predict</button> 
            </form>
            <p></p>
+           <p></p>
            <div class="form-group">
-             <label>Prediction result</label>
+             <label>Prediction result:</label>
              <h3>{{ predicted }}</h3>
            </div>
            <p></p>
+           <p></p>
            <div class="form-group">
-           <label>API address</label>
+           <label>API address:</label>
              <h3>http://localhost:8000/predictor</h3>
            </div>
          </div>
