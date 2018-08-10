@@ -5,6 +5,8 @@ import { concatMap, map } from 'rxjs/operators';
 import {Observable} from "rxjs/internal/Observable";
 import {interval} from "rxjs/internal/observable/interval";
 import {startWith, switchMap} from "rxjs/operators";
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-trainer',
@@ -17,17 +19,19 @@ export class TrainerComponent implements OnInit {
   params: any;
   data: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
     this.data = window.localStorage.getItem('acquisitor');
     this.params = JSON.parse(this.data)["params"];
-    console.log(this.params);
+  }
+
+  next(post){
+    this.router.navigate(['predictor']);
   }
 
   startPipeline(post) {
     var acquisitorProtocol, status, tprepProtocol, trainerProtocol;
-
 
     this.http.post('http://localhost:3000/api/acquisitor', this.data).subscribe(resp => {
       acquisitorProtocol = resp['result'];

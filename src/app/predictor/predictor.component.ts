@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-predictor',
@@ -11,7 +13,7 @@ export class PredictorComponent implements OnInit {
 
   predicted: string;
 
-  constructor(private user:UserService, private http: HttpClient) { }
+  constructor(private user:UserService, private http: HttpClient, private router: Router) { }
 
   ngOnInit() {}
 
@@ -24,6 +26,10 @@ export class PredictorComponent implements OnInit {
     		resp => this.predicted = resp["result"],
     		error => console.log(error)
     	);
+  }
+
+  home(post) {
+    this.router.navigate(['predictor']);
   }
 
 }
