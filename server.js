@@ -26,6 +26,7 @@ const server = new Hapi.Server({
   port: 3000,
   host: 'localhost',
   routes: {
+    cors: true,
     files: {
       relativeTo: Path.join(__dirname, 'dist/marvin-automl-ui')
     }

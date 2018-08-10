@@ -1,30 +1,30 @@
-<h3>Predictor</h3>
-<div class="divTable">
-  <div class="divTableBody">
-    <div class="divTableRow">
-      <div class="divTableCell">
-        <div class="row">
-          <div class="col-xs-offset-1 col-xs-8">
-            <form (submit)="submitPredictor($event)">
-              <div class="form-group">
-               <label>Your message for prediction</label>
-               <input type="text" class="form-control" placeholder="Prediction Message" aria-describedby="basic-addon1">
-             </div>
-             <button type="submit" class="btn btn-primary">Submit</button> 
-           </form>
-           <p></p>
-           <div class="form-group">
-             <label>Prediction result</label>
-             <h3>Prediction result</h3>
-           </div>
-           <p></p>
-           <div class="form-group">
-           <label>API address</label>
-             <h3>http://localhost:8000/predictor</h3>
-           </div>
-         </div>
-       </div>
+<div class="row">
+  <div class="col-xs-offset-1 col-xs-8">
+    <h3>Predictor (<a href="http://localhost:8000/docs/">http://localhost:8000/docs/</a>)</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-offset-1 col-xs-8">
+    <form (submit)="submitPredictor($event)">
+      <div class="form-group">
+       <input type="text" class="form-control" placeholder="Message to predict..." aria-describedby="basic-addon1">
      </div>
+     <div class="row">
+      <div class="col-xs-2"><button type="submit" class="btn btn-primary">Predict</button>
+     </div>
+     </div>
+   </form>
+   <p></p>
+   <p></p>
+ </div>
+</div>
+<div class="row">
+  <div class="col-xs-offset-1 col-xs-8">
+   <div class="form-group">
+     <label>Prediction result:</label>
+     <h2><strong>{{ predicted | uppercase }}</strong></h2>
    </div>
+   <p></p>
+   <p></p>
  </div>
 </div>

@@ -1,8 +1,12 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { UserService } from '../user.service';
 import { HttpClient } from '@angular/common/http';
-import { StatusService } from '../status.service';
-import { Status } from '../action.status';
+import { timer } from 'rxjs';
+import { concatMap, map } from 'rxjs/operators';
+import {Observable} from "rxjs/internal/Observable";
+import {interval} from "rxjs/internal/observable/interval";
+import {startWith, switchMap} from "rxjs/operators";
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-trainer',
@@ -11,17 +15,54 @@ import { Status } from '../action.status';
 })
 export class TrainerComponent implements OnInit {
 
-  status: Status;
+  trainerStatus$: Observable<any>;
+  params: any;
+  data: any;
 
-  constructor(private statusService: StatusService) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
-  	this
-  		.statusService
-  		.getResult()
-  		.subscribe((data: Status) => {
-  			this.status = JSON.parse(data.result);
-  		});
+    this.data = window.localStorage.getItem('acquisitor');
+    this.params = JSON.parse(this.data)["params"];
+  }
+
+  next(post){
+    this.router.navigate(['predictor']);
+  }
+
+  startPipeline(post) {
+    var acquisitorProtocol, status, tprepProtocol, trainerProtocol;
+
+    this.http.post('http://localhost:3000/api/acquisitor', this.data).subscribe(resp => {
+      acquisitorProtocol = resp['result'];
+      console.log(acquisitorProtocol);
+      
+      // this.http.post('http://localhost:3000/api/acquisitor/status', JSON.stringify({'protocol': acquisitorProtocol})).subscribe(resp => {
+      //   status = JSON.parse(resp['result'])['status']['name'];
+      //   console.log(status);
+
+        this.http.post('http://localhost:3000/api/tpreparator', JSON.stringify({})).subscribe(resp => {
+          tprepProtocol = resp['result'];
+          console.log(tprepProtocol);
+
+          this.http.post('http://localhost:3000/api/trainer', this.data).subscribe(resp => {
+            trainerProtocol = resp['result'];
+            console.log(trainerProtocol);
+
+            const trainerReq$ = this.http.post('http://localhost:3000/api/trainer/status', JSON.stringify({'protocol': trainerProtocol}))
+
+            interval(5000).pipe(
+              startWith(0),
+              switchMap(_ => trainerReq$)
+            ).subscribe(resp => {
+              this.trainerStatus$ = JSON.parse(resp['result'])['status']['name'];
+              console.log(this.trainerStatus$);
+            });
+
+          });
+        });
+      // });
+    });
   }
 
 }
