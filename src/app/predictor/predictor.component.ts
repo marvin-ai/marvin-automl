@@ -21,7 +21,7 @@ export class PredictorComponent implements OnInit {
     var message = post.target.elements[0].value;
 
     this.http
-    	.post('http://localhost:3000/api/predictor', JSON.stringify(message))
+    	.post('http://localhost:3000/api/predictor', JSON.stringify('{"message": ' + message + '}'))
     	.subscribe(
     		resp => this.predicted = resp["result"],
     		error => console.log(error)
