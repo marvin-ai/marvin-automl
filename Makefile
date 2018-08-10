@@ -1,5 +1,12 @@
 .PHONY: help mongo mongo-down install server
 
+define BROWSER_PYSCRIPT
+import webbrowser
+webbrowser.open("http://localhost:4200/home")
+endef
+export BROWSER_PYSCRIPT
+BROWSER := python -c "$$BROWSER_PYSCRIPT"
+
 help:
 	@echo "    mongo"
 	@echo "        Up mongo environment."
@@ -20,6 +27,6 @@ install:
 	npm install
 
 server:
-	node server.js & ng serve
+	ng serve && node server.js && $(BROWSER)
 
 
