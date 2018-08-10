@@ -35,6 +35,11 @@ module.exports = [
   },
   {
     method: 'POST',
+    path: '/api/trainer/status',
+    handler: TrainerController.status
+  },
+  {
+    method: 'POST',
     path: '/api/trainer',
     handler: TrainerController.action
   },

@@ -1,5 +1,7 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { timer } from 'rxjs';
+import { concatMap, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-trainer',
@@ -26,13 +28,14 @@ export class TrainerComponent implements OnInit {
     var acquisitorProtocol, status, tprepProtocol, trainerProtocol;
 
     var data = window.localStorage.getItem('acquisitor');
+
     this.http.post('http://localhost:3000/api/acquisitor', data).subscribe(resp => {
       acquisitorProtocol = resp['result'];
       console.log(acquisitorProtocol);
       
-      this.http.post('http://localhost:3000/api/acquisitor/status', JSON.stringify({'protocol': acquisitorProtocol})).subscribe(resp => {
-        status = JSON.parse(resp['result'])['status']['name'];
-        console.log(status);
+      // this.http.post('http://localhost:3000/api/acquisitor/status', JSON.stringify({'protocol': acquisitorProtocol})).subscribe(resp => {
+      //   status = JSON.parse(resp['result'])['status']['name'];
+      //   console.log(status);
 
         this.http.post('http://localhost:3000/api/tpreparator', JSON.stringify({})).subscribe(resp => {
           tprepProtocol = resp['result'];
@@ -41,9 +44,20 @@ export class TrainerComponent implements OnInit {
           this.http.post('http://localhost:3000/api/trainer', data).subscribe(resp => {
             trainerProtocol = resp['result'];
             console.log(trainerProtocol);
+
+            const trainerReq$ = this.http.post('http://localhost:3000/api/trainer/status', JSON.stringify({'protocol': trainerProtocol})).subscribe(resp => {
+              status = JSON.parse(resp['result'])['status']['name'];
+              console.log(status);
+            });
+
+            //this.trainerStatus$ = timer(0, 1000).pipe(
+            //  concatMap(_ => trainerReq$),
+            //  map((response: {EUR: {last: number}}) => response.EUR.last),
+            //);
+
+          });
         });
-        });
-      });
+      // });
     });
   }
 

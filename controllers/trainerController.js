@@ -1,7 +1,6 @@
 var rp = require('request-promise');
 
 const action = (request, h) => {
-    console.log(JSON.parse(request.payload));
     return rp.post(
         {
             'url': 'http://localhost:8000/trainer',
@@ -12,9 +11,11 @@ const action = (request, h) => {
 }
 
 const status = (request, h) => {
+    var protocol = JSON.parse(request.payload)['protocol'];
+    console.log(protocol);
     return rp.get(
         {
-            'url': 'http://localhost:8000/trainer/status',
+            'url': 'http://localhost:8000/trainer/status?protocol='+protocol,
             'json': true,
         },
     );
