@@ -1,0 +1,22 @@
+version: "2"
+services:
+  app:
+    container_name: app
+    restart: always
+    build: .
+    ports:
+      - "3000:3000"
+      - "4200:4200"
+    links:
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: marvin123
+      MONGO_INITDB_DATABASE: marvindata
