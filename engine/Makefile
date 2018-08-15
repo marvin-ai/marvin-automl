@@ -1,9 +1,9 @@
 .PHONY: help marvin marvin-prod update clean-pyc clean-build clean-reports clean-deps clean docker-build docker-push docker-run
 
-DOCKER_VERSION?=0.00.01
-DOCKER_REGISTRY_ADRESS?=docker.registry.io
+DOCKER_VERSION?=0.0.2
+DOCKER_REGISTRY_ADDRESS?=marvinaiplatform
 MARVIN_DATA_PATH?=$(HOME)/marvin/data
-MARVIN_ENGINE_NAME?=automl
+MARVIN_ENGINE_NAME?=marvin-automl
 MARVIN_TOOLBOX_VERSION?=0.0.4
 
 help:
@@ -67,10 +67,10 @@ docker-build: clean-build
 	mkdir -p build
 	tar -cf build/engine.tar --exclude=*.log --exclude=*.pkl --exclude='build' --exclude='notebooks' --exclude=*.tar *
 	cp -f $(MARVIN_DATA_PATH)/marvin-engine-executor-assembly-$(MARVIN_TOOLBOX_VERSION).jar build/marvin-engine-executor-assembly.jar
-	sudo docker build -t $(DOCKER_REGISTRY_ADRESS)/$(MARVIN_ENGINE_NAME):$(DOCKER_VERSION) .
+	sudo docker build -t $(DOCKER_REGISTRY_ADDRESS)/$(MARVIN_ENGINE_NAME):$(DOCKER_VERSION) .
 
 docker-run:
 	sudo docker run --name=marvin-$(MARVIN_ENGINE_NAME)-$(DOCKER_VERSION) --mount type=bind,source=$(MARVIN_DATA_PATH),destination=/marvin-data -p 8000:8000 $(DOCKER_REGISTRY_ADRESS)/$(MARVIN_ENGINE_NAME):$(DOCKER_VERSION)
 
 docker-push:
-	sudo docker push $(DOCKER_REGISTRY_ADRESS)/$(MARVIN_ENGINE_NAME):$(DOCKER_VERSION)
+	sudo docker push $(DOCKER_REGISTRY_ADDRESS)/$(MARVIN_ENGINE_NAME):$(DOCKER_VERSION)
