@@ -44,10 +44,12 @@ export class TrainerComponent implements OnInit {
         this.http.post('http://localhost:3000/api/tpreparator', JSON.stringify({})).subscribe(resp => {
           tprepProtocol = resp['result'];
           console.log(tprepProtocol);
+          window.localStorage.setItem('tprepProtocol', tprepProtocol);
 
           this.http.post('http://localhost:3000/api/trainer', this.data).subscribe(resp => {
             trainerProtocol = resp['result'];
             console.log(trainerProtocol);
+            window.localStorage.setItem('trainerProtocol', trainerProtocol);
 
             const trainerReq$ = this.http.post('http://localhost:3000/api/trainer/status', JSON.stringify({'protocol': trainerProtocol}))
 

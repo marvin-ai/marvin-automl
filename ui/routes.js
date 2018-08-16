@@ -45,6 +45,16 @@ module.exports = [
   },
   {
     method: 'POST',
+    path: '/api/evaluator/reload',
+    handler: EvaluatorController.reload
+  },
+  {
+    method: 'POST',
+    path: '/api/evaluator/metrics',
+    handler: EvaluatorController.metrics
+  },
+  {
+    method: 'POST',
     path: '/api/evaluator',
     handler: EvaluatorController.action
   },
