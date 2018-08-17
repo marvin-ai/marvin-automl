@@ -19,6 +19,16 @@ const status = (request, h) => {
     );
 }
 
+const reload = (request, h) => {
+    var payload = JSON.parse(request.payload);
+    var protocol = payload.acquisitorProtocol;
+    return rp.put(
+        {
+            'url': 'http://localhost:8000/tpreparator/reload?protocol='+protocol,
+        },
+    );
+}
+
 module.exports = {
-  action, status
+  action, status, reload
 }

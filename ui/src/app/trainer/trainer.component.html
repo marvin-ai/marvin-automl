@@ -6,9 +6,7 @@
     </form>
   </div>
   <div class="col-xs-2" *ngIf="trainerStatus$=='finished'">
-    <form (submit)="next($event)">
-      <button type="submit" class="btn btn-primary">Next</button>
-    </form>
+    <a class="btn btn-primary" href="/metrics">Next</a>
   </div>
   <div class="col-xs-offset-4 col-xs-2">
     <p style="font-size: 24px;"><strong>{{ trainerStatus$ | uppercase }}</strong></p>

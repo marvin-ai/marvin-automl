@@ -30,6 +30,11 @@ module.exports = [
   },
   {
     method: 'POST',
+    path: '/api/tpreparator/reload',
+    handler: TpreparatorController.reload
+  },
+  {
+    method: 'POST',
     path: '/api/tpreparator',
     handler: TpreparatorController.action
   },
@@ -37,6 +42,11 @@ module.exports = [
     method: 'POST',
     path: '/api/trainer/status',
     handler: TrainerController.status
+  },
+  {
+    method: 'POST',
+    path: '/api/trainer/reload',
+    handler: TrainerController.reload
   },
   {
     method: 'POST',
