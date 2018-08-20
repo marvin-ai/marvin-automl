@@ -2,47 +2,21 @@
 
 <h3>Model Metrics</h3>
 <div class="row">
-  <div class="col-xs-4">
-    <div id="row-1-col-1-text" *ngIf="metrics.hasOwnProperty('explained_variance_score')">
-      Explained Variance Score: {{ metrics.explained_variance_score | number:'1.3-3'}}
-    </div>
-    <div id="row-1-col-1-text" *ngIf="metrics.hasOwnProperty('accuracy')">
-      Accuracy: {{ metrics.accuracy | number:'1.3-3'}}
-    </div>
-    <canvas id="row-1-col-1" *ngIf="metrics.hasOwnProperty('explained_variance_score')"><div>{{ metrics.explained_variance_score | number:'1.3-3'}}</div></canvas>
-    <canvas id="row-1-col-1" *ngIf="metrics.hasOwnProperty('accuracy')"><div>{{ metrics.accuracy | number:'1.3-3'}}</div></canvas>
-  </div>
-  <div class="col-xs-4">
-    <div id="row-1-col-2-text" *ngIf="metrics.hasOwnProperty('mean_absolute_error')">
-      Mean Absolute Error: {{ metrics.mean_absolute_error | number:'1.3-3'}}
-    </div>
-    <div id="row-1-col-2-text" *ngIf="metrics.hasOwnProperty('f1_weighted')">
-      F1 Weighted: {{ metrics.f1_weighted | number:'1.3-3'}}
-    </div>
-    <canvas id="row-1-col-2" *ngIf="metrics.hasOwnProperty('mean_absolute_error')"><div>{{ metrics.mean_absolute_error | number:'1.3-3'}}</div></canvas>
-    <canvas id="row-1-col-2" *ngIf="metrics.hasOwnProperty('f1_weighted')"><div>{{ metrics.f1_weighted | number:'1.3-3'}}</div></canvas>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-4">
-    <div id="row-2-col-1-text" *ngIf="metrics.hasOwnProperty('mean_squared_log_error')">
-      Mean Squared Log Error: {{ metrics.mean_squared_log_error | number:'1.3-3'}}
-    </div>
-    <div id="row-2-col-1-text" *ngIf="metrics.hasOwnProperty('precision')">
-      Precision: {{ metrics.precision | number:'1.3-3'}}
-    </div>
-    <canvas id="row-2-col-1" *ngIf="metrics.hasOwnProperty('mean_squared_log_error')"><div>{{ metrics.mean_squared_log_error | number:'1.3-3'}}</div></canvas>
-    <canvas id="row-2-col-1" *ngIf="metrics.hasOwnProperty('precision')"><div>{{ metrics.precision | number:'1.3-3'}}</div></canvas>
-  </div>
-  <div class="col-xs-4">
-    <div id="row-2-col-2-text" *ngIf="metrics.hasOwnProperty('r2_score')">
-      R2 Score: {{ metrics.r2_score | number:'1.3-3'}}
-    </div>
-    <div id="row-2-col-2-text" *ngIf="metrics.hasOwnProperty('recall')">
-      Recall: {{ metrics.recall | number:'1.3-3'}}
-    </div>
-    <canvas id="row-2-col-2" *ngIf="metrics.hasOwnProperty('r2_score')"><div>{{ metrics.r2_score | number:'1.3-3'}}</div></canvas>
-    <canvas id="row-2-col-2" *ngIf="metrics.hasOwnProperty('recall')"><div>{{ metrics.recall | number:'1.3-3'}}</div></canvas>
+  <div class="col-xs-8">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let metric of metrics | mapToIterable">
+          <td>{{ metric.key | titlecase }}</td>
+          <td>{{ metric.val | number:'1.3-3' }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
 <div class="row">

@@ -40,5 +40,4 @@ export class MetricsComponent implements OnInit {
 			});
 		});
 	}
-
 }
