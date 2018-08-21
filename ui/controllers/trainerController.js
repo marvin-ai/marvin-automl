@@ -21,6 +21,17 @@ const status = (request, h) => {
     );
 }
 
+const reload = (request, h) => {
+    var protocol = JSON.parse(request.payload)['protocol'];
+    console.log(protocol);
+    return rp.put(
+        {
+            'url': 'http://localhost:8000/trainer/reload?protocol='+protocol,
+            'json': true,
+        },
+    );
+}
+
 module.exports = {
-  action, status
+  action, status, reload
 }

@@ -13,7 +13,7 @@ import { StatusService } from './status.service';
 import { MetricsComponent } from './metrics/metrics.component';
 import { PredictorComponent } from './predictor/predictor.component';
 import { AcquisitorComponent } from './acquisitor/acquisitor.component';
-
+import { MapToIterable } from './map-to-iterable.pipe';
 
 const appRoutes:Routes = [
   {
@@ -53,7 +53,8 @@ const appRoutes:Routes = [
     TrainerComponent,
     MetricsComponent,
     PredictorComponent,
-    AcquisitorComponent
+    AcquisitorComponent,
+    MapToIterable
   ],
   imports: [
     BrowserModule,
