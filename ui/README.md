@@ -20,6 +20,35 @@ This project is focus to help **users** to test your data over the Marvin to ach
 ## Configuring Mongodb
 To start the project you need an valid MongoDb connection. To start read your guide [here](mongocommands.md).
 
+# Installation
+
+## Ubuntu
+
+1. Install NodeJS:
+
+```
+$ curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+$ sudo apt-get install -y nodejs
+```
+
+2. Install NPM:
+
+```
+$ sudo apt install npm
+```
+
+3. Install Angular:
+
+```
+$ sudo npm install -g @angular/cli --no-optional
+```
+
+4. Install dependencies
+
+```
+$ npm install --no-optional
+```
+
 # Running Application
 
 ## Start 
